@@ -1,6 +1,11 @@
 # riskprofileapp
 
-A simple react native app for checking the risk profile for banking purpose.
+A simple react native app for checking the risk profile based on question response for banking purpose.
+
+App screenshots
+1: Home screen ![alt text](src/app-screenshots/home.png)
+2: Result screen. ![alt text](src/app-screenshots/result.png)
+
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
