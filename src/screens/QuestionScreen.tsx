@@ -11,16 +11,17 @@ import {
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import questionStore from '../store/QuestionStore';
+import {BUTTON_LABELS, TEXTS, SCREEN_NAME} from '../constants/strings';
+import {COLORS} from '../constants/colors';
 
 const QuestionScreen = () => {
-  // const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const navigation = useNavigation();
 
   const nextQuestion = () => {
     if (
       questionStore.selectedOptions[questionStore.currentQuestionIndex] === null
     ) {
-      Alert.alert('Please select an option before proceeding.');
+      Alert.alert(`${TEXTS.alertOption}`);
     } else {
       if (
         questionStore.currentQuestionIndex <
@@ -28,7 +29,7 @@ const QuestionScreen = () => {
       ) {
         questionStore.nextQuestion();
       } else {
-        navigation.navigate('Result');
+        navigation.navigate(SCREEN_NAME.result);
       }
     }
   };
@@ -37,8 +38,10 @@ const QuestionScreen = () => {
     <View style={styles.main}>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.questionCounter}>
-          Question {questionStore.currentQuestionIndex + 1} of{' '}
-          {questionStore.questions.length}
+          {TEXTS.questionCounter(
+            questionStore.currentQuestionIndex + 1,
+            questionStore.questions.length,
+          )}
         </Text>
         <View style={styles.card}>
           <Text style={styles.questionText}>
@@ -72,7 +75,7 @@ const QuestionScreen = () => {
           </TouchableOpacity>
         ))}
         <TouchableOpacity style={styles.nextButton} onPress={nextQuestion}>
-          <Text style={styles.nextButtonText}>Next</Text>
+          <Text style={styles.nextButtonText}>{BUTTON_LABELS.next}</Text>
         </TouchableOpacity>
       </ScrollView>
     </View>
@@ -93,7 +96,7 @@ const styles = StyleSheet.create({
     padding: 20,
     marginBottom: 20,
     borderRadius: 10,
-    backgroundColor: '#ebf4f6',
+    backgroundColor: COLORS.cardBackground,
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 10,
     borderRadius: 10,
-    backgroundColor: '#f4f4f8',
+    backgroundColor: COLORS.optionButton,
     borderWidth: 1,
     borderColor: '#ddd',
     flexDirection: 'row',

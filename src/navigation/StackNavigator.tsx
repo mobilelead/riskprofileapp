@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import QuestionScreen from '../screens/QuestionScreen';
 import ResultScreen from '../screens/ResultScreen';
+import {SCREEN_NAME, SCREEN_TITLE} from '../constants/strings';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,11 +12,11 @@ const StackNavigator = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="QuestionScreen">
         <Stack.Screen
-          name="Question"
+          name={SCREEN_NAME.question}
           component={QuestionScreen}
-          options={{title: 'Investment Risk Check'}} // Custom title for QuestionScreen
+          options={{title: SCREEN_TITLE.question}} // Custom title for QuestionScreen
         />
-        <Stack.Screen name="Result" component={ResultScreen} />
+        <Stack.Screen name={SCREEN_NAME.result} component={ResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -2,32 +2,26 @@ import React from 'react';
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import questionStore from '../store/QuestionStore';
 import {useNavigation} from '@react-navigation/native';
-
+import {BUTTON_LABELS, TEXTS, SCREEN_NAME} from '../constants/strings';
 const ResultScreen: React.FC = () => {
   const navigation = useNavigation();
 
   const resetAndNavigate = () => {
     questionStore.reset();
-    navigation.navigate('Question');
+    navigation.navigate(SCREEN_NAME.question);
   };
   return (
     <View style={styles.container}>
       <View style={styles.scoreCard}>
-        {/* <Text style={styles.score}>
-          Total Score: {questionStore.totalScore}
-        </Text> */}
         <Text style={styles.title}>
-          Your Investment Risk Score is: {questionStore.totalScore}
+          {TEXTS.riskScore} {questionStore.totalScore}
         </Text>
-        {/* <Text style={styles.score}>
-          Total Score: {questionStore.totalScore}
-        </Text> */}
         <Text style={styles.score}>
-          Risk Profile: {questionStore.riskProfile}
+          {TEXTS.riskProfile} {questionStore.riskProfile}
         </Text>
       </View>
       <TouchableOpacity style={styles.resetButton} onPress={resetAndNavigate}>
-        <Text style={styles.resetButtonText}>Done</Text>
+        <Text style={styles.resetButtonText}>{BUTTON_LABELS.done}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -42,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 20,
   },
